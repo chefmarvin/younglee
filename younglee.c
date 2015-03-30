@@ -1,21 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <curses.h>
+#include <signal.h>
+#include <unistd.h>
 
 #include "younglee.h"
 
-#define TRUE 1
-#define FALSE 0
-
 int main(int argc, char *argv[])
 {
+    int iter;
+    for (iter = 0; iter < argc; iter++)
+        if (*argv[iter] == '-')
+            getOption(argv[iter] + 1);
+    
+    printf ("%d\n", BASIC          );
+    printf ("%d\n", EDUCATION      );
+    printf ("%d\n", WORKEXPERIENCE );
+    printf ("%d\n", PROJECTS       );
+    printf ("%d\n", SKILLS         );
+    printf ("%d\n", MAIL           );
+    printf ("%d\n", HOMEPAGE       );
+    printf ("%d\n", LINKS          );
+
     switch(argc)
     {
         case 1:
-            basicInfo();
+            basic();
             break;
         default:
-            showDetails(argc, argv);
+            basic();
+            education();
             break;
     }
     
