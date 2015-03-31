@@ -11,22 +11,31 @@
 #include <stddef.h>
 
 /* ============ Definations start ============ */
-#define ON       1
-#define OFF      0
-#define TRUE     1
-#define FALSE    0
-#define SEQLEN  12
+#define CVITEMS           12
+#define TRUE               1
+#define FALSE              0
+#define DFTFUN            -1
+#define IDX_BASIC          0
+#define IDX_EDUCATION      1
+#define IDX_WORKEXPERIENCE 2
+#define IDX_PROJECTS       3
+#define IDX_SKILLS         4
+#define IDX_MAIL           5
+#define IDX_HOMEPAGE       6
+#define IDX_LINKS          7
+
 /* ============ Definations end ============ */
 
 /* ============ Variables start ============ */
-int BASIC          = OFF;
-int EDUCATION      = OFF;
-int WORKEXPERIENCE = OFF;
-int PROJECTS       = OFF;
-int SKILLS         = OFF;
-int MAIL           = OFF;
-int HOMEPAGE       = OFF;
-int LINKS          = OFF;
+int top            = 0;
+int BASIC          = DFTFUN;
+int EDUCATION      = DFTFUN;
+int WORKEXPERIENCE = DFTFUN;
+int PROJECTS       = DFTFUN;
+int SKILLS         = DFTFUN;
+int MAIL           = DFTFUN;
+int HOMEPAGE       = DFTFUN;
+int LINKS          = DFTFUN;
 wchar_t jchars[] = L"ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ゙゚゛゜ゝゞゟ゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺーヽヾヿㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ";
 /* ============ Variables end ============ */
 
@@ -39,7 +48,8 @@ int skills(void);
 int mail(void);
 int homepage(void);
 int links(void);
-int getOption(char *opt);
+void getOption(char *opt);
+int getCVItems(int itemNum, int (*cvStack[])(void));
 /* ============ Functions prototypes end ============ */
 
 /* ============ Functions implementations start ============ */
@@ -99,31 +109,68 @@ links(void)
     return TRUE;
 }
 
-int
+/* ============ Functions jump table starts ============ */
+int (*cvSlice[CVITEMS])(void) = {};
+/* ============ Functions jump table ends ============ */
+
+void
 getOption(char *opt)
 {
-    extern int BASIC, WEBSTACK;
+    extern int BASIC, WEBSTACK, top;
 
     while ('\0' != *opt)
     {
         switch (*opt++)
         {
-            case 'b': BASIC          = ON; break; 
-            case 'e': EDUCATION      = ON; break;
-            case 'w': WORKEXPERIENCE = ON; break;
-            case 'p': PROJECTS       = ON; break;
-            case 's': SKILLS         = ON; break;
-            case 'm': MAIL           = ON; break;
-            case 'h': HOMEPAGE       = ON; break;
-            case 'l': LINKS          = ON; break;
-            default: break;
+            case 'b':
+                cvSlice[top++] = &basic;
+                break;
+            case 'e':
+                cvSlice[top++] = &education;
+                break;
+            case 'w':
+                cvSlice[top++] = &workexperience;
+                break;
+            case 'p':
+                cvSlice[top++] = &projects;
+                break;
+            case 's':
+                cvSlice[top++] = &skills;
+                break;
+            case 'm':
+                cvSlice[top++] = &mail;
+                break;
+            case 'h':
+                cvSlice[top++] = &homepage;
+                break;
+            case 'l':
+                cvSlice[top++] = &links;
+                break;
+            default:
+                cvSlice[top++] = &basic;
+                cvSlice[top++] = &education;
+                cvSlice[top++] = &workexperience;
+                cvSlice[top++] = &projects;
+                cvSlice[top++] = &skills;
+                cvSlice[top++] = &mail;
+                cvSlice[top++] = &homepage;
+                cvSlice[top++] = &links;
+                break;
         }
+    }
+}
+
+int
+getCVItems(int itemNum, int (*cvStack[])(void))
+{
+    int iter, FLAG = TRUE;
+    for (iter = 0; iter < itemNum; iter++) {
+        FLAG = cvStack[iter]();
+        if (FALSE == FLAG)
+            break;
     }
 }
 /* ============ Functions implementations end ============ */
 
-/* ============ Functions jump table starts ============ */
-int (*cvSlice[])(void) = { basic, education, workexperience, projects, skills, mail, homepage, links };
-/* ============ Functions jump table ends ============ */
 
 #endif /* YOUNGLEE_H */

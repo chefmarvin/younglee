@@ -11,21 +11,17 @@ int main(int argc, char *argv[])
 {
     int iter;
     for (iter = 0; iter < argc; iter++)
+    {
+        if (1 == argc) {
+            char *dft = "x";
+            getOption(dft);
+            break;
+        }
         if (*argv[iter] == '-')
             getOption(argv[iter] + 1);
-
-    cvSlice[1]();
+    }
     
-    /* switch(argc) */
-    /* { */
-    /*     case 1: */
-    /*         basic(); */
-    /*         break; */
-    /*     default: */
-    /*         basic(); */
-    /*         education(); */
-    /*         break; */
-    /* } */
+    getCVItems(top, cvSlice);
     
     return 0;
 }
