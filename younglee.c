@@ -13,26 +13,19 @@ int main(int argc, char *argv[])
     for (iter = 0; iter < argc; iter++)
         if (*argv[iter] == '-')
             getOption(argv[iter] + 1);
-    
-    printf ("%d\n", BASIC          );
-    printf ("%d\n", EDUCATION      );
-    printf ("%d\n", WORKEXPERIENCE );
-    printf ("%d\n", PROJECTS       );
-    printf ("%d\n", SKILLS         );
-    printf ("%d\n", MAIL           );
-    printf ("%d\n", HOMEPAGE       );
-    printf ("%d\n", LINKS          );
 
-    switch(argc)
-    {
-        case 1:
-            basic();
-            break;
-        default:
-            basic();
-            education();
-            break;
-    }
+    cvSlice[1]();
+    
+    /* switch(argc) */
+    /* { */
+    /*     case 1: */
+    /*         basic(); */
+    /*         break; */
+    /*     default: */
+    /*         basic(); */
+    /*         education(); */
+    /*         break; */
+    /* } */
     
     return 0;
 }

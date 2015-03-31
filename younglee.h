@@ -8,13 +8,17 @@
 #include <curses.h>
 #include <signal.h>
 #include <unistd.h>
+#include <stddef.h>
 
-#define ON    1
-#define OFF   0
-#define TRUE  1
-#define FALSE 0
-#define JCHARS 210
+/* ============ Definations start ============ */
+#define ON       1
+#define OFF      0
+#define TRUE     1
+#define FALSE    0
+#define SEQLEN  12
+/* ============ Definations end ============ */
 
+/* ============ Variables start ============ */
 int BASIC          = OFF;
 int EDUCATION      = OFF;
 int WORKEXPERIENCE = OFF;
@@ -23,37 +27,75 @@ int SKILLS         = OFF;
 int MAIL           = OFF;
 int HOMEPAGE       = OFF;
 int LINKS          = OFF;
-wchar_t jchars[210] = { 'ぁ', 'あ', 'ぃ', 'い', 'ぅ', 'う', 'ぇ', 'え', 'ぉ', 'お', 'か', 'が', 'き', 'ぎ', 'く',
-                        'ぐ', 'け', 'げ', 'こ', 'ご', 'さ', 'ざ', 'し', 'じ', 'す', 'ず', 'せ', 'ぜ', 'そ', 'ぞ', 'た',
-                        'だ', 'ち', 'ぢ', 'っ', 'つ', 'づ', 'て', 'で', 'と', 'ど', 'な', 'に', 'ぬ', 'ね', 'の', 'は',
-                        'ば', 'ぱ', 'ひ', 'び', 'ぴ', 'ふ', 'ぶ', 'ぷ', 'へ', 'べ', 'ぺ', 'ほ', 'ぼ', 'ぽ', 'ま', 'み',
-                        'む', 'め', 'も', 'ゃ', 'や', 'ゅ', 'ゆ', 'ょ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ', 'ゎ', 'わ',
-                        'ゐ', 'ゑ', 'を', 'ん', 'ゔ', 'ゕ', 'ゖ', '゙', '゚', '゛', '゜', 'ゝ', 'ゞ', 'ゟ',
-                        '゠', 'ァ', 'ア', 'ィ', 'イ', 'ゥ', 'ウ', 'ェ', 'エ', 'ォ', 'オ', 'カ', 'ガ', 'キ', 'ギ', 'ク',
-                        'グ', 'ケ', 'ゲ', 'コ', 'ゴ', 'サ', 'ザ', 'シ', 'ジ', 'ス', 'ズ', 'セ', 'ゼ', 'ソ', 'ゾ', 'タ',
-                        'ダ', 'チ', 'ヂ', 'ッ', 'ツ', 'ヅ', 'テ', 'デ', 'ト', 'ド', 'ナ', 'ニ', 'ヌ', 'ネ', 'ノ', 'ハ',
-                        'バ', 'パ', 'ヒ', 'ビ', 'ピ', 'フ', 'ブ', 'プ', 'ヘ', 'ベ', 'ペ', 'ホ', 'ボ', 'ポ', 'マ', 'ミ',
-                        'ム', 'メ', 'モ', 'ャ', 'ヤ', 'ュ', 'ユ', 'ョ', 'ヨ', 'ラ', 'リ', 'ル', 'レ', 'ロ', 'ヮ', 'ワ',
-                        'ヰ', 'ヱ', 'ヲ', 'ン', 'ヴ', 'ヵ', 'ヶ', 'ヷ', 'ヸ', 'ヹ', 'ヺ', 'ー', 'ヽ', 'ヾ', 'ヿ',
-                        'ㇰ', 'ㇱ', 'ㇲ', 'ㇳ', 'ㇴ', 'ㇵ', 'ㇶ', 'ㇷ', 'ㇸ', 'ㇹ', 'ㇺ', 'ㇻ', 'ㇼ', 'ㇽ', 'ㇾ', 'ㇿ' };    /* TODO: with unicode support */
+wchar_t jchars[] = L"ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ゙゚゛゜ゝゞゟ゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺーヽヾヿㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ";
+/* ============ Variables end ============ */
 
+/* ============ Functions prototypes start ============ */
+int basic(void);
+int education(void);
+int workexperience(void);
+int projects(void);
+int skills(void);
+int mail(void);
+int homepage(void);
+int links(void);
 int getOption(char *opt);
-int basicInfo(void);
-int showDetails(void);
+/* ============ Functions prototypes end ============ */
 
+/* ============ Functions implementations start ============ */
 int
 basic(void)
 {
-    printf("Basic: \n\t");
-
+    printf("Basic: \n\t\n");
     return TRUE;
 }
 
 int
 education()
 {
-    printf("Education: \n\t");
+    printf("Education: \n\t\n");
+    return TRUE;
+}
 
+int
+workexperience(void)
+{
+    printf("Work Experience: \n\t\n");
+    return TRUE;
+}
+
+int
+projects(void)
+{
+    printf("Projects: \n\t\n");
+    return TRUE;
+}
+
+int
+skills(void)
+{
+    printf("Skills: \n\t\n");
+    return TRUE;
+}
+
+int
+mail(void)
+{
+    printf("Mail: \n\t\n");
+    return TRUE;
+}
+
+int
+homepage(void)
+{
+    printf("Homepage: \n\t\n");
+    return TRUE;
+}
+
+int
+links(void)
+{
+    printf("Links: \n\t\n");
     return TRUE;
 }
 
@@ -78,5 +120,10 @@ getOption(char *opt)
         }
     }
 }
+/* ============ Functions implementations end ============ */
+
+/* ============ Functions jump table starts ============ */
+int (*cvSlice[])(void) = { basic, education, workexperience, projects, skills, mail, homepage, links };
+/* ============ Functions jump table ends ============ */
 
 #endif /* YOUNGLEE_H */
