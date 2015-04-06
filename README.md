@@ -1,6 +1,8 @@
 # younglee
 A build in command to check out Young Lee's cv on unix like systems, for work and for fun:)
 
+[![image](younglee.png)]
+
 ## install the ncurses library
 in Ubuntu:
 ```markdown
