@@ -1,12 +1,9 @@
 # younglee
-A build in command to check out Young Lee's cv on unix like systems, for work and for fun:)
-
-[![image](younglee.png)]
+A build in command to check out Young Lee's cv on unix like systems, for job and for fun:)
 
 ## install the ncurses library
-in Ubuntu:
 ```markdown
-sudo apt-get install libncurses5-dev
+npm install -g younglee
 ```
 
-Copyright 2015 Young Lee (youngleemails@gmail.com)
+Copyright 2017 Young Lee (youngleemails@gmail.com)
