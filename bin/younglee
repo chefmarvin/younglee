@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+require('commander')
+  .version(require('../package').version)
+  .usage('<command> [options]')
+  .command('en', 'Display cv in English')
+  .command('ch', '显示中文简历')
+  .parse(process.argv)
