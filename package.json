@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/YoungLeeNENU/younglee#readme",
   "dependencies": {
+    "blessed": "^0.1.81",
     "commander": "^2.10.0",
-    "ncurses": "^0.4.2",
     "webpack": "^3.0.0"
   },
   "engines": {
