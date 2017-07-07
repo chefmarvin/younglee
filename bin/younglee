@@ -1255,7 +1255,7 @@ module.exports = require("fs");
 
 module.exports = {
 	"name": "younglee",
-	"version": "1.0.5-beta",
+	"version": "1.0.6-beta",
 	"description": "younglee's cv, hosted on the npm",
 	"main": "index.js",
 	"bin": {
