@@ -61,20 +61,40 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 69);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */
+/******/ ({
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("child_process");
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var commander = __webpack_require__(3);
-var pkgJson = __webpack_require__(8);
+var commander = __webpack_require__(70);
+var pkgJson = __webpack_require__(71);
 commander.version(pkgJson.version)
     .usage('<command> [options]')
     .command('en', 'Display cv in English')
@@ -83,19 +103,20 @@ commander.version(pkgJson.version)
 
 
 /***/ }),
-/* 3 */
+
+/***/ 70:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var EventEmitter = __webpack_require__(4).EventEmitter;
-var spawn = __webpack_require__(5).spawn;
+var EventEmitter = __webpack_require__(9).EventEmitter;
+var spawn = __webpack_require__(3).spawn;
 var path = __webpack_require__(6);
 var dirname = path.dirname;
 var basename = path.basename;
-var fs = __webpack_require__(7);
+var fs = __webpack_require__(2);
 
 /**
  * Expose the root command.
@@ -1226,36 +1247,13 @@ function exists(file) {
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
 
-module.exports = require("events");
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = require("child_process");
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-/* 8 */
+/***/ 71:
 /***/ (function(module, exports) {
 
 module.exports = {
 	"name": "younglee",
-	"version": "1.0.6-beta",
+	"version": "1.0.7-beta",
 	"description": "younglee's cv, hosted on the npm",
 	"main": "index.js",
 	"bin": {
@@ -1302,5 +1300,13 @@ module.exports = {
 	}
 };
 
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = require("events");
+
 /***/ })
-/******/ ]);
+
+/******/ });

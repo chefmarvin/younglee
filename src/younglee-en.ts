@@ -5,3 +5,4 @@ const lang = 'en';
 const frame = new Frame(configs[lang]);
 
 frame.init();
+frame.render();

@@ -5,4 +5,6 @@ export class Configs {
 
 export class Config {
     public name: string;
+    public title: string;
+    public items: string[][];
 }
