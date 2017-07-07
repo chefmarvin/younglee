@@ -1,7 +1,7 @@
 {
   "name": "younglee",
   "version": "1.0.5-beta",
-  "description": "younglee's cv",
+  "description": "younglee's cv, hosted on the npm",
   "main": "index.js",
   "bin": {
     "younglee": "bin/younglee",
@@ -9,6 +9,7 @@
     "younglee-ch": "bin/younglee-ch"
   },
   "scripts": {
+    "bin": "webpack && chmod +x bin/younglee bin/younglee-en bin/younglee-ch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,9 +17,9 @@
     "url": "git+https://github.com/YoungLeeNENU/younglee.git"
   },
   "keywords": [
-    "young",
-    "lee",
-    "cv"
+    "Young Lee",
+    "NPM",
+    "CV"
   ],
   "author": "Young Lee",
   "license": "MIT",
@@ -27,11 +28,21 @@
   },
   "homepage": "https://github.com/YoungLeeNENU/younglee#readme",
   "dependencies": {
+    "@types/blessed": "^0.1.5",
+    "@types/commander": "^2.9.1",
     "blessed": "^0.1.81",
     "commander": "^2.10.0",
-    "webpack": "^3.0.0"
+    "pty.js": "^0.3.1",
+    "request": "^2.81.0",
+    "term.js": "^0.0.7"
   },
   "engines": {
     "node": ">=4.0.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.1",
+    "file-loader": "^0.11.2",
+    "typescript": "^2.4.1",
+    "webpack": "^3.0.0"
   }
 }

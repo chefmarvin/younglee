@@ -1,5 +1,5 @@
 # younglee
-A build in command to check out Young Lee's cv on unix like systems, for job and for fun:)
+A build in command to check out Young Lee's cv on unix like systems, for a new job and for fun:)
 
 ## Install
 ```markdown

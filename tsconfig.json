@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+		"declaration": true,
+        "module": "commonjs",
+		"moduleResolution": "node",
+        "sourceMap": false,
+        "noImplicitAny": true,
+        "typeRoots": [
+			"node_modules/@types"
+        ],
+        "target": "es5"
+    },
+    "include": [
+        "./src/**/*",
+		"./lib/**/*"
+    ]
+    // "include": [
+    //     "./src/**/*",
+	// 	"./lib/**/*"
+    // ]
+}
