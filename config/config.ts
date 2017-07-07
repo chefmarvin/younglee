@@ -17,7 +17,7 @@ const configs: Configs = {
     },
     ch: {
         name: "李旸",
-        title: '李旸的简历，按 [Q] 退出',
+        title: '* 李旸的简历，按 [Q] 退出 *',
         items: [
             [''],
             ['基本信息'],
