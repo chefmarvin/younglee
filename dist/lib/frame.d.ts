@@ -1,6 +1,7 @@
 import { Config } from '../config/config.type';
 export default class Frame {
     config: Config;
+    counter: number;
     screen: any;
     mainBox: any;
     listtable: any;

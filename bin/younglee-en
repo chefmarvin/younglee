@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 72);
+/******/ 	return __webpack_require__(__webpack_require__.s = 73);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -20815,6 +20815,7 @@ module.exports = Video;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var blessed = __webpack_require__(28);
+var components_options_1 = __webpack_require__(68);
 var auto = true;
 var Frame = (function () {
     function Frame(config) {
@@ -20825,72 +20826,31 @@ var Frame = (function () {
             fullUnicode: true,
             warnings: true
         });
+        this.counter = 1;
     }
     Frame.prototype.init = function () {
         this.screenWillMount();
     };
     Frame.prototype.screenWillMount = function () {
-        var mainBoxOptions = {
-            parent: this.screen,
-            top: 'center',
-            left: 'center',
-            data: null,
-            border: 'line',
-            align: 'center',
-            tags: true,
-            keys: true,
-            width: '100%',
-            height: '100%',
-            content: this.config.title,
-            style: {
-                fg: '#008b00',
-                bold: true,
-                border: {
-                    bold: true,
-                    fg: '#008b00'
-                }
-            }
-        };
-        var menuBarOptions = {
+        var _this = this;
+        this.mainBox = blessed.box(components_options_1.mainBoxOpt(this.screen, this.config));
+        this.listtable = blessed.listtable(components_options_1.menuBarOpt(this.screen, this.config));
+        var test = {
             parent: this.screen,
             top: 2,
-            left: 3,
-            bottom: 2,
-            data: this.config.items,
-            border: 'line',
-            align: 'center',
-            tags: true,
-            keys: true,
-            width: 'shrink',
-            height: 'shrink',
-            vi: true,
-            mouse: true,
-            style: {
-                border: {
-                    fg: '#008b00'
-                },
-                cell: {
-                    fg: '#008b00',
-                    selected: {
-                        bg: '#008b00'
-                    }
-                }
-            }
-        };
-        var infoBoxOptions = {
-            parent: this.screen,
-            top: 2,
-            left: 18,
+            left: 23,
             right: 3,
             bottom: 2,
-            data: null,
             border: 'line',
             align: 'center',
             tags: true,
             keys: true,
             width: 'shrink',
             height: 'shrink',
-            content: "...",
+            padding: {
+                left: 2
+            },
+            content: "",
             style: {
                 fg: '#008b00',
                 bold: true,
@@ -20900,15 +20860,44 @@ var Frame = (function () {
                 }
             }
         };
-        this.mainBox = blessed.box(mainBoxOptions);
-        this.listtable = blessed.listtable(menuBarOptions);
-        this.infoBox = blessed.box(infoBoxOptions);
+        this.infoBox = blessed.box(test);
+        this.listtable.on('keypress', function (ch, key) {
+            if (key.name === 'up' || key.name === 'k') {
+                if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
+                    _this.counter--;
+                }
+                _this.infoBox.setContent(_this.config.info[_this.counter]);
+                _this.render();
+                return;
+            }
+            else if (key.name === 'down' || key.name === 'j') {
+                if (_this.counter >= 1 && _this.counter < _this.config.info.length - 1) {
+                    _this.counter++;
+                }
+                _this.infoBox.setContent(_this.config.info[_this.counter]);
+                _this.render();
+                return;
+            }
+        });
+        this.listtable.on('keypress', function (ch, key) {
+            if (key.name === 'right' || key.name === 'l') {
+                _this.infoBox.focus();
+                return;
+            }
+        });
+        this.infoBox.on('keypress', function (ch, key) {
+            if (key.name === 'left' || key.name === 'h') {
+                _this.listtable.focus();
+                return;
+            }
+        });
         this.screen.key('q', function () {
             return this.screen.destroy();
         });
         this.listtable.focus();
     };
     Frame.prototype.render = function () {
+        this.infoBox.setContent(this.config.info[this.counter]);
         this.screen.render();
     };
     return Frame;
@@ -30597,24 +30586,125 @@ exports.native = pty;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+function mainBoxOpt(screen, config) {
+    return {
+        parent: screen,
+        top: 'center',
+        left: 'center',
+        data: null,
+        border: 'line',
+        align: 'center',
+        tags: true,
+        keys: true,
+        width: '100%',
+        height: '100%',
+        content: config.title,
+        style: {
+            fg: '#008b00',
+            bold: true,
+            border: {
+                bold: true,
+                fg: '#008b00'
+            }
+        }
+    };
+}
+exports.mainBoxOpt = mainBoxOpt;
+function menuBarOpt(screen, config) {
+    return {
+        parent: screen,
+        top: 2,
+        left: 3,
+        bottom: 2,
+        data: config.items,
+        border: 'line',
+        align: 'center',
+        tags: true,
+        keys: true,
+        width: 20,
+        height: 'shrink',
+        vi: true,
+        mouse: true,
+        style: {
+            border: {
+                fg: '#008b00'
+            },
+            cell: {
+                fg: '#008b00',
+                selected: {
+                    bg: '#008b00'
+                }
+            }
+        }
+    };
+}
+exports.menuBarOpt = menuBarOpt;
+function infoBoxOpt(screen, config) {
+    return {
+        parent: screen,
+        top: 2,
+        left: 24,
+        right: 3,
+        bottom: 2,
+        border: 'line',
+        align: 'center',
+        tags: true,
+        keys: true,
+        width: 'shrink',
+        height: 'shrink',
+        padding: {
+            left: 2
+        },
+        content: "Waiting...",
+        style: {
+            fg: '#008b00',
+            bold: true,
+            border: {
+                bold: true,
+                fg: '#008b00'
+            }
+        }
+    };
+}
+exports.infoBoxOpt = infoBoxOpt;
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var configs = {
     en: {
         name: "Young Lee",
-        title: "* Young Lee's CV, press [Q] to exit *",
+        title: "* Young Lee's CV, press [Q] to exit, [\u2191\u2192\u2193\u2190] to navigate *",
+        remoteUrl: 'https://raw.githubusercontent.com/YoungLeeNENU/younglee/node-version/info/',
         items: [
             [''],
             ['Overview'],
             ['Education'],
-            ['Links'],
-            ['Mail'],
+            ['Work Experience'],
             ['Projects'],
             ['Skills'],
-            ['Work']
+            ['Links'],
+            ['Mail']
+        ],
+        info: ['',
+            'basic.en.md',
+            'education.en.md',
+            'work.en.md',
+            'project.en.md',
+            'skills.en.md',
+            'links.en.md',
+            'mail.en.md'
         ]
     },
     ch: {
         name: "李旸",
-        title: '李旸的简历，按 [Q] 退出',
+        title: '* 李旸的简历，按 [Q] 退出，按 [↑→↓←] 导航 *',
+        remoteUrl: 'https://raw.githubusercontent.com/YoungLeeNENU/younglee/node-version/info/',
         items: [
             [''],
             ['基本信息'],
@@ -30624,6 +30714,15 @@ var configs = {
             ['项目'],
             ['技能'],
             ['工作经历']
+        ],
+        info: ['',
+            'basic.ch.md',
+            'education.ch.md',
+            'work.ch.md',
+            'project.ch.md',
+            'skills.ch.md',
+            'links.ch.md',
+            'mail.ch.md'
         ]
     }
 };
@@ -30631,17 +30730,17 @@ exports.default = configs;
 
 
 /***/ }),
-/* 69 */,
 /* 70 */,
 /* 71 */,
-/* 72 */
+/* 72 */,
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var frame_1 = __webpack_require__(51);
-var config_1 = __webpack_require__(68);
+var config_1 = __webpack_require__(69);
 var lang = 'en';
 var frame = new frame_1.default(config_1.default[lang]);
 frame.init();

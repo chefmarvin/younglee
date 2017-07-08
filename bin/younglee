@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 69);
+/******/ 	return __webpack_require__(__webpack_require__.s = 70);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -87,14 +87,14 @@ module.exports = require("path");
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var commander = __webpack_require__(70);
-var pkgJson = __webpack_require__(71);
+var commander = __webpack_require__(71);
+var pkgJson = __webpack_require__(72);
 commander.version(pkgJson.version)
     .usage('<command> [options]')
     .command('en', 'Display cv in English')
@@ -104,7 +104,7 @@ commander.version(pkgJson.version)
 
 /***/ }),
 
-/***/ 70:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -1248,12 +1248,12 @@ function exists(file) {
 
 /***/ }),
 
-/***/ 71:
+/***/ 72:
 /***/ (function(module, exports) {
 
 module.exports = {
 	"name": "younglee",
-	"version": "1.0.7-beta",
+	"version": "1.0.8-beta",
 	"description": "younglee's cv, hosted on the npm",
 	"main": "index.js",
 	"bin": {
@@ -1283,6 +1283,7 @@ module.exports = {
 	"dependencies": {
 		"@types/blessed": "^0.1.5",
 		"@types/commander": "^2.9.1",
+		"@types/request": "^0.0.45",
 		"blessed": "^0.1.81",
 		"commander": "^2.10.0",
 		"pty.js": "^0.3.1",

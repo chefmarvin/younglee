@@ -6,5 +6,7 @@ export class Configs {
 export class Config {
     public name: string;
     public title: string;
+    public remoteUrl: string;
     public items: string[][];
+    public info: string[];
 }
