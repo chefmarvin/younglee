@@ -1,6 +1,6 @@
 {
   "name": "younglee",
-  "version": "1.0.8-beta",
+  "version": "1.0.9-beta",
   "description": "younglee's cv, hosted on the npm",
   "main": "index.js",
   "bin": {
