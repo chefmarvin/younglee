@@ -1,4 +1,18 @@
 import { Configs, Config } from './config.type';
+import * as basic_en from '../info/basic.en';
+import * as education_en from '../info/education.en';
+import * as work_en from '../info/work.en';
+import * as project_en from '../info/project.en';
+import * as skills_en from '../info/skills.en';
+import * as language_en from '../info/language.en';
+import * as links_en from '../info/links.en';
+import * as basic_ch from '../info/basic.ch';
+import * as education_ch from '../info/education.ch';
+import * as work_ch from '../info/work.ch';
+import * as project_ch from '../info/project.ch';
+import * as skills_ch from '../info/skills.ch';
+import * as language_ch from '../info/language.ch';
+import * as links_ch from '../info/links.ch';
 
 const configs: Configs = {
     en: {
@@ -16,13 +30,13 @@ const configs: Configs = {
             ['Links']
         ],
         info: ['',
-            'basic.en.md',
-            'education.en.md',
-            'work.en.md',
-            'project.en.md',
-            'skills.en.md',
-            'language.en.md',
-            'links.en.md'
+            basic_en.basic_en,
+            education_en.education_en,
+            work_en.work_en,
+            project_en.project_en,
+            skills_en.skills_en,
+            language_en.language_en,
+            links_en.links_en
         ]
     },
     ch: {
@@ -40,13 +54,13 @@ const configs: Configs = {
             ['链接']
         ],
         info: ['',
-            'basic.ch.md',
-            'education.ch.md',
-            'work.ch.md',
-            'project.ch.md',
-            'skills.ch.md',
-            'language.ch.md',
-            'links.ch.md'
+            basic_ch.basic_ch,
+            education_ch.education_ch,
+            work_ch.work_ch,
+            project_ch.project_ch,
+            skills_ch.skills_ch,
+            language_ch.language_ch,
+            links_ch.links_ch
         ]
     }
 };

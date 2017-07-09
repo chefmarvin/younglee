@@ -1,3 +1,4 @@
+export const basic_en = `
 # Young Lee
 
 ## A programmer
@@ -7,3 +8,4 @@
 ## Currently lives in Shanghai, China
 
 ## Phone/Wechat (+86) 177-1737-4091
+`

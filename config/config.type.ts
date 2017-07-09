@@ -8,5 +8,5 @@ export class Config {
     public title: string;
     public remoteUrl: string;
     public items: string[][];
-    public info: string[];
+    public info: any[];
 }

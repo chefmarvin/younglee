@@ -1,3 +1,4 @@
+export const work_en = `
 # [美团点评](http://meituan.com/)
 
 ## Web Frontend Developer
@@ -28,3 +29,4 @@
 ## Software Development Intern
 ## 2013.04 - 2013.09
 ### Embedded software development. Developed the tcp/udp server and client on pc and cortex m3 using the lwip protocal.
+`;

@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 74);
+/******/ 	return __webpack_require__(__webpack_require__.s = 88);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -20815,7 +20815,6 @@ module.exports = Video;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var blessed = __webpack_require__(28);
-var fs = __webpack_require__(2);
 var components_options_1 = __webpack_require__(68);
 var auto = true;
 var Frame = (function () {
@@ -20833,16 +20832,10 @@ var Frame = (function () {
         this.screenWillMount();
     };
     Frame.prototype.screenWillMount = function () {
-        var text;
         this.mainBox = blessed.box(components_options_1.mainBoxOpt(this.screen, this.config));
         this.listtable = blessed.listtable(components_options_1.menuBarOpt(this.screen, this.config));
         this.infoBox = blessed.scrollabletext(components_options_1.infoTextScrollableOpt(this.screen, this.config));
-        try {
-            text = fs.readFileSync("./info/" + this.config.info[this.counter], 'utf-8');
-        }
-        catch (error) {
-            text = fs.readFileSync("~/.younglee/" + this.config.info[this.counter], 'utf-8');
-        }
+        var text = this.config.info[this.counter];
         this.infoBox.setContent(text);
         this.bindings();
         this.listtable.focus();
@@ -20850,17 +20843,11 @@ var Frame = (function () {
     Frame.prototype.bindings = function () {
         var _this = this;
         this.listtable.on('keypress', function (ch, key) {
-            var text;
             if (key.name === 'up' || key.name === 'k') {
                 if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
                     _this.counter--;
                 }
-                try {
-                    text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
-                }
-                catch (error) {
-                    text = fs.readFileSync("~/.younglee/" + _this.config.info[_this.counter], 'utf-8');
-                }
+                var text = _this.config.info[_this.counter];
                 _this.infoBox.setContent(text);
                 _this.render();
                 return;
@@ -20869,12 +20856,7 @@ var Frame = (function () {
                 if (_this.counter >= 1 && _this.counter < _this.config.info.length - 1) {
                     _this.counter++;
                 }
-                try {
-                    text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
-                }
-                catch (error) {
-                    text = fs.readFileSync("~/.younglee/" + _this.config.info[_this.counter], 'utf-8');
-                }
+                var text = _this.config.info[_this.counter];
                 _this.infoBox.setContent(text);
                 _this.render();
                 return;
@@ -30715,6 +30697,20 @@ exports.infoTextScrollableOpt = infoTextScrollableOpt;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var basic_en = __webpack_require__(70);
+var education_en = __webpack_require__(71);
+var work_en = __webpack_require__(72);
+var project_en = __webpack_require__(73);
+var skills_en = __webpack_require__(74);
+var language_en = __webpack_require__(75);
+var links_en = __webpack_require__(76);
+var basic_ch = __webpack_require__(77);
+var education_ch = __webpack_require__(78);
+var work_ch = __webpack_require__(79);
+var project_ch = __webpack_require__(80);
+var skills_ch = __webpack_require__(81);
+var language_ch = __webpack_require__(82);
+var links_ch = __webpack_require__(83);
 var configs = {
     en: {
         name: "Young Lee",
@@ -30731,13 +30727,13 @@ var configs = {
             ['Links']
         ],
         info: ['',
-            'basic.en.md',
-            'education.en.md',
-            'work.en.md',
-            'project.en.md',
-            'skills.en.md',
-            'language.en.md',
-            'links.en.md'
+            basic_en.basic_en,
+            education_en.education_en,
+            work_en.work_en,
+            project_en.project_en,
+            skills_en.skills_en,
+            language_en.language_en,
+            links_en.links_en
         ]
     },
     ch: {
@@ -30755,13 +30751,13 @@ var configs = {
             ['链接']
         ],
         info: ['',
-            'basic.ch.md',
-            'education.ch.md',
-            'work.ch.md',
-            'project.ch.md',
-            'skills.ch.md',
-            'language.ch.md',
-            'links.ch.md'
+            basic_ch.basic_ch,
+            education_ch.education_ch,
+            work_ch.work_ch,
+            project_ch.project_ch,
+            skills_ch.skills_ch,
+            language_ch.language_ch,
+            links_ch.links_ch
         ]
     }
 };
@@ -30769,11 +30765,151 @@ exports.default = configs;
 
 
 /***/ }),
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.basic_en = "\n# Young Lee\n\n## A programmer\n\n## Web Developer at Meituan\n\n## Currently lives in Shanghai, China\n\n## Phone/Wechat (+86) 177-1737-4091\n";
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.education_en = "\n# Graduated from [Northeast Normal University](http://www.nenu.edu.cn/), China, Jilin, Changchun\n\n## Major in Computer Science, 2010 - 2014\n\n## Bachelor Degree\n";
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.work_en = "\n# [\u7F8E\u56E2\u70B9\u8BC4](http://meituan.com/)\n\n## Web Frontend Developer\n## 2015.10 - now\n### Take part in developing the web applications for Meituan Dianping restaurant menu order business, including hybrid web applications, PC web applications.\n### Designed and developed the client side code for the \"Tianyan\" food safety supervisor and as the person in responsible.\n### Currently as the person in responsible for the data platform of the Meituan-Dianping menu order business.\n\n\n# [Dianping](http://www.dianping.com/)\n\n## Web Frontend Developer\n## 2015.06 - 2015.10\n### Basiclly focused on javascript application development. Developed Hybrid web applications on mobile devices.\n\n\n# [Taomee Entertainment](http://www.61.com/)\n\n## Software Engineer\n## 2014.07 - 2015.06\n### Helped built javascript applications for an interanl used system for data statistics.\n### Developed browser-side applications for [game accounts system](http://account.61.com)\n### Developed browser-side applications for [payment system](http://pay.61.com)\n\n\n# [Changchun Institute of Applied Chemistry](http://www.ciac.jl.cn/)\n\n## Software Development Intern\n## 2013.04 - 2013.09\n### Embedded software development. Developed the tcp/udp server and client on pc and cortex m3 using the lwip protocal.\n";
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.project_en = "\n# Restaurant Menu Order System (Data Analysis Platform/PC/Hybrid App) @Meituan-Dianping\n\n## 2015.07 - Now\n## Right now in charge of the data analysis platform for Meituan-Dianping menuorder system.\n### Take part in developing this business in the majority of time at Meituan-Dianping. Built the mobile hybrid application and web application on PC at the earlier stage. Currently designed and developed the data analysis platform web applications(including data visualization, data analysis and recommendation) and as the person in responsible. Technology stack including cortex(Dianping's package management application), Gulp, Webpack, jQuery/Zepto, ES6+, Typescript, React, Vue, Angular.\n\n\n# \"Tianyan\" Food Safety Supervisor @Meituan Dianping & Government of Shanghai\n\n## 2016.11 - 2016.12\n## In charge of the client side coding. Designed the cache system, remote control navigating algorithm, optimized the performance for the TV App.\n### In the cooperation of Meituan-Dianping and the government of Shanghai comes the system for supervising the food safty condition of the restaurant in Shnaghai. The system is producted as a Application on TV, all the pages hosted in the application is developed in a hybrid way. the application react to the remote control and navigate to the right page, this system also includes the downlevel mechanism, high performace caching, and optimizations for the android TV App.Technology stack including ES6+, Echarts, cortex(Dianping's package management application), Gulp.\n\n\n# Taomee Data Analysis Platform\n\n## 2014.07 - 2015.03\n## Take part in developing, maintaining the data analysis platform\n### The system is based on data gathered in Taomee games and provides data visualization and data analysis pages. Except the visualization of the data, the system also provides ways for generating new pages from raw data visually and agilely. Technology stack including ES5, jQuery, jQuery UI.\n\n\n# SDN Load Balancer\n\n## 2014.05 - 2014.06\n## In charge of the load balancing for multiple web service based on the controller of POX\n### As a competitors of the first Chinese university SDN(Software Defined Network) application code jam and winned an award. Designed and coded the load balancer based on SDN for four web server, Technology stack is Python, mininet, POX.\n";
+
+
+/***/ }),
 /* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.skills_en = "\n# Professional\n\n## Javascript(es6+)\n## CSS3\n## HTML5\n\n# Intermediate\n\n## Software Engineering\n## Computer Science\n## Python\n## Typescript\n## ClojureScript\n## Version Control(git, svn)\n## Linux\n## Emacs\n\n\n# Amateur\n\n## C\n## Clojure\n# skills\n";
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.language_en = "\n# Chinese\n\n## Native speaker\n\n\n# English\n\n## CET-4: 527\n## CET-6: 462\n## Oral: Good\n## Written: Good\n";
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.links_en = "\n# [HomePage](https://youngleenenu.github.io/)\n\n# [Github](https://github.com/YoungLeeNENU)\n\n# [Linkedin](http://www.linkedin.com/in/youngleein/)\n\n# [Douban](https://www.douban.com/people/lee_young/)\n\n# [Zhihu](https://www.zhihu.com/people/youngleehua/activities)\n\n# Talks\n## [Serious ClojureScript](https://www.slideshare.net/YoungLee98/serious-clojurescript)\n";
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.basic_ch = "\n# \u674E\u65F8\n\n## \u7A0B\u5E8F\u5458\n\n## Web \u524D\u7AEF\u5DE5\u7A0B\u5E08@\u7F8E\u56E2\u5927\u4F17\u70B9\u8BC4\n\n## \u73B0\u5C45\u4E2D\u56FD\u4E0A\u6D77\n\n## \u7535\u8BDD/\u5FAE\u4FE1 (+86) 177-1737-4091\n";
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.education_ch = "\n# \u6BD5\u4E1A\u4E8E[\u4E1C\u5317\u5E08\u8303\u5927\u5B66](http://www.nenu.edu.cn/), \u4E2D\u56FD\u5409\u6797\u957F\u6625\u5E02\n\n## \u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u5E94\u7528\u6280\u672F, 2010 - 2014\n\n## \u672C\u79D1\u5B66\u4F4D\n";
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.work_ch = "\n# [\u7F8E\u56E2\u70B9\u8BC4](http://meituan.com/)\n\n## Web \u524D\u7AEF\u5DE5\u7A0B\u5E08\n## 2015.10 \u2014 \u81F3\u4ECA\n### \u66FE\u53C2\u4E0E\u5F00\u53D1\u7F8E\u56E2-\u5927\u4F17\u70B9\u8BC4\u70B9\u83DC\u4E1A\u52A1\u5BA2\u6237\u7AEF Hybrid \u9875\u9762\uFF0C\u5546\u5BB6\u7AEF\u9875\u9762\uFF0C\u540E\u53F0\u7BA1\u7406\uFF0C\u6570\u636E\u7EDF\u8BA1\u9875\u9762\u7684\u524D\u7AEF\u4EE3\u7801\u7684\u5F00\u53D1\u3002\n### \u66FE\u8D1F\u8D23\u7F8E\u56E2\u70B9\u8BC4\u4E0E\u4E0A\u6D77\u5E02\u98DF\u836F\u76D1\u5C40\u5408\u4F5C\u7684\u5929\u773C\u6570\u636E\u7CFB\u7EDF\u3002\n### \u73B0\u4E3A\u7F8E\u56E2\u70B9\u8BC4\u70B9\u9910\u4E8B\u4E1A\u90E8\u6570\u636E\u5E73\u53F0\u4EA7\u54C1\u524D\u7AEF\u8D1F\u8D23\u4EBA\u3002\n\n\n# [\u5927\u4F17\u70B9\u8BC4](http://www.dianping.com/)\n\n## Web \u524D\u7AEF\u5DE5\u7A0B\u5E08\n## 2015.06 \u2014 2015.10\n### \u4E3B\u8981\u7F16\u5199 Javascript \u5E94\u7528\u3002\u53C2\u4E0E\u5927\u4F17\u70B9\u8BC4\u5546\u6237\u4E2D\u5FC3\u7684\u524D\u7AEF\u4EE3\u7801\u7F16\u5199\uFF0C\u70B9\u8BC4\u7BA1\u5BB6\uFF0C\u70B9\u8BC4 App \u70B9\u5355\uFF0C\u5546\u65C5\u901A\u90E8\u5206\u7684 Hybird \u9875\u9762\u7F16\u5199\u3002\n\n\n# [\u6DD8\u7C73\u7F51](http://www.61.com/)\n\n## Web \u5F00\u53D1\u5DE5\u7A0B\u5E08\n## 2014.07 \u2014 2015.06\n### \u8D1F\u8D23\u6DD8\u7C73\u5185\u7F51\u6570\u636E\u7EDF\u8BA1\u5E73\u53F0\u7684\u529F\u80FD\u6027\u524D\u7AEF\u7EC4\u4EF6\u5F00\u53D1\n### \u8D1F\u8D23\u7EF4\u62A4[\u6DD8\u7C73\u8D26\u53F7\u7CFB\u7EDF] (http://account.61.com) \u7684 Web \u524D\u7AEF\u4E1A\u52A1\n### \u8D1F\u8D23\u7EF4\u62A4[\u6DD8\u7C73\u652F\u4ED8\u7CFB\u7EDF] (http://pay.61.com) \u7684 Web \u524D\u7AEF\u4E1A\u52A1\n\n\n# [\u4E2D\u56FD\u79D1\u5B66\u9662\u957F\u6625\u5E94\u7528\u5316\u5B66\u7814\u7A76\u6240](http://www.ciac.jl.cn/)\n\n## \u5D4C\u5165\u5F0F\u7CFB\u7EDF\u5F00\u53D1\u5B9E\u4E60\u751F\n## 2013.04 \u2014 2013.09\n### \u57FA\u4E8E lwip \u534F\u8BAE\u8D1F\u8D23\u5F00\u53D1\u4E86\u7684 cortex-M9 \u5F00\u53D1\u677F\u548C PC \u7684 TCP/UDP \u7F51\u7EDC\u901A\u4FE1\u5E94\u7528\n";
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.project_ch = "\n# \u5927\u4F17\u70B9\u8BC4\u70B9\u9910\u79D2\u4ED8 \u6570\u636E\u5E73\u53F0/\u5546\u6237\u540E\u53F0/Hybrid App\n\n## 2015.07 - \u81F3\u4ECA\n## \u73B0\u4E3A\u7F8E\u56E2\u70B9\u8BC4\u70B9\u9910\u4E1A\u52A1\u6570\u636E\u5E73\u53F0\u524D\u7AEF\u8D1F\u8D23\u4EBA\n### \u4E8E\u7F8E\u56E2\u70B9\u8BC4\u4E3B\u8981\u53C2\u4E0E\u7684\u4E1A\u52A1\uFF0C\u524D\u671F\u53C2\u4E0E\u4E86\u5927\u4F17\u70B9\u8BC4 App \u70B9\u9910\u529F\u80FD Hybrid \u9875\u9762\u7684\u5F00\u53D1\uFF0C\u4EE5\u53CA PC \u7AEF\u5546\u6237\u7BA1\u7406\u9875\u9762\u7684\u5F00\u53D1\uFF0C\u540E\u671F\u4F5C\u4E3A\u9879\u76EE\u8D1F\u8D23\u4EBA\u8D1F\u8D23\u70B9\u9910\u79D2\u4ED8\u6570\u636E\u5E73\u53F0\u524D\u7AEF\u4EA7\u54C1\u7684\u8BBE\u8BA1\u548C\u5F00\u53D1\uFF0C\u8BBE\u8BA1\u5E76\u5F00\u53D1\u4E86\u6570\u636E\u5C55\u793A\u7CFB\u7EDF\uFF0C\u6570\u636E\u67E5\u8BE2\u7CFB\u7EDF\uFF0C\u83DC\u54C1\u63A8\u8350\u7CFB\u7EDF\u7684 PC \u4EE5\u53CA App \u9875\u9762\uFF0C\u7528\u5230\u7684\u6280\u672F\u5305\u62EC cortex(\u70B9\u8BC4\u5185\u90E8\u7684\u5305\u7BA1\u7406\u5DE5\u5177), Gulp, Webpack, jQuery/Zepto, ES6+, Typescript, React, Vue, Angular\u7B49\n\n\n# \u7F8E\u56E2\u70B9\u8BC4-\u4E0A\u6D77\u5E02\u653F\u5E9C \u5929\u773C\u98DF\u54C1\u5B89\u5168\u76D1\u63A7\u7CFB\u7EDF\n\n## 2016.11 - 2016.12\n## \u524D\u7AEF\u9879\u76EE\u8D1F\u8D23\u4EBA\uFF0C\u8BBE\u8BA1\u4E86\u9488\u5BF9\u7535\u89C6 App \u7684\u7F13\u5B58\u7CFB\u7EDF\uFF0C\u9065\u63A7\u5668\u5BFC\u822A\uFF0C\u6027\u80FD\u4F18\u5316\u7B49\n### \u8BE5\u9879\u76EE\u662F\u7F8E\u56E2\u70B9\u8BC4\u4E0E\u4E0A\u6D77\u5E02\u957F\u5B81\u533A\u533A\u653F\u5E9C\u4EE5\u53CA\u4E0A\u6D77\u5E02\u653F\u5E9C\u5408\u4F5C\u7684\u76D1\u63A7\u89C6\u9891\u8D28\u91CF\u7684\u7535\u89C6 App\uFF0C\u6240\u6709\u9875\u9762\u90FD\u662F\u57FA\u4E8E Hybrid \u65B9\u5F0F\u5185\u5D4C\u5230\u5B89\u5353 \u5E94\u7528\u5185\u7684 Web \u9875\u9762\uFF0C\u901A\u8FC7\u9065\u63A7\u5668\u63A7\u5236\u9875\u9762\u770B\u677F\u7684\u5BFC\u822A\u548C\u5207\u6362\uFF0C\u7CFB\u7EDF\u5185\u5305\u62EC\u9AD8\u6548\u7684\u7F13\u5B58\uFF0C\u6570\u636E\u964D\u7EA7\u673A\u5236\u4EE5\u53CA\u9488\u5BF9\u7535\u89C6 App \u8FDB\u884C\u7684\u9488\u5BF9\u6027\u4F18\u5316\u3002\u4E3B\u8981\u662F\u7528\u7684\u6280\u672F\u662F ES6+, Echarts, cortex(\u70B9\u8BC4\u5185\u90E8\u7684\u5305\u7BA1\u7406\u5DE5\u5177), Gulp\n\n\n# \u6DD8\u7C73\u6570\u636E\u5E73\u53F0\n\n## 2014.07 - 2015.03\n## \u53C2\u4E0E\u5F00\u53D1\u7EF4\u62A4\u6DD8\u7C73\u7684\u6E38\u620F\u6570\u636E\u5E73\u53F0\n### \u8BE5\u9879\u76EE\u662F\u57FA\u4E8E\u6DD8\u7C73\u6E38\u620F\u5185\u6570\u636E\u57CB\u70B9\u7EDF\u8BA1\u7F16\u5199\u7684\u53EF\u89C6\u5316\u6570\u636E\u5E73\u53F0\uFF0C\u9664\u4E86\u6570\u636E\u7684\u53EF\u89C6\u5316\uFF0C\u4E5F\u505A\u5230\u4E86\u914D\u7F6E\u6570\u636E\u7684\u53EF\u89C6\u5316\uFF0C\u80FD\u591F\u5C06\u65B0\u751F\u6210\u7684\u6570\u636E\u901A\u8FC7\u9875\u9762\u914D\u7F6E\uFF0C\u8FC5\u901F\u7684\u90E8\u7F72\u5230\u7CFB\u7EDF\u4E2D\uFF0C\u964D\u4F4E\u4E86\u5F00\u53D1\u7684\u6210\u672C\u3002\u4E3B\u8981\u4F7F\u7528\u7684\u6280\u672F\u662F ES5, jQuery, jQuery UI\n\n\n# SDN \u8D1F\u8F7D\u5747\u8861\u5668\n\n## 2014.05 - 2014.06\n## \u8D1F\u8D23\u5728 POX \u7684\u57FA\u7840\u4E0A\u5229\u7528\u6A21\u62DF\u591A\u670D\u52A1\u5668 Web \u5E94\u7528\u7684\u8D1F\u8F7D\u5747\u8861\n### \u8BE5\u9879\u76EE\u7528\u4E8E\u53C2\u52A0\u7B2C\u4E00\u5C4A\u5168\u56FD\u9AD8\u6821 SDN (\u8F6F\u4EF6\u5B9A\u4E49\u7F51\u7EDC)\u5E94\u7528\u521B\u65B0\u5F00\u53D1\u5927\u8D5B\uFF0C\u8D1F\u8D23 4 \u4E2A web server \u7684\u8D1F\u8F7D\u5747\u8861\u5668\u7684\u7F16\u5199\uFF0C\u4F7F\u7528\u7684\u6A21\u62DF\u5668\u662F mininet\uFF0C\u63A7\u5236\u5668\u662F POX\uFF0C\u4E3B\u8981\u5F00\u53D1\u8BED\u8A00\u662F Python\uFF0C\u8BE5\u9879\u76EE\u5728\u6BD4\u8D5B\u4E2D\u83B7\u5F97\u4F18\u80DC\u5956\n";
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.skills_ch = "\n# \u4E13\u4E1A\n\n## Javascript(es6+)\n## CSS3\n## HTML5\n\n\n# \u719F\u6089\n\n## \u8BA1\u7B97\u673A\u79D1\u5B66\n## \u8F6F\u4EF6\u5DE5\u7A0B\u7BA1\u7406\n## Python\n## Typescript\n## ClojureScript\n## \u7248\u672C\u63A7\u5236\uFF08git\uFF0Csvn\uFF09\n## Linux\n## Emacs\n\n\n# \u4E86\u89E3\n\n## C\n## Clojure\n";
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.language_ch = "\n# \u6C49\u8BED\n\n## \u6BCD\u8BED\n\n\n# \u82F1\u8BED\n\n## CET-4: 527\n## CET-6: 462\n## \u53E3\u8BED: \u826F\u597D\n## \u4E66\u5199: \u826F\u597D\n";
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.links_ch = "\n# [\u4E2A\u4EBA\u4E3B\u9875](https://youngleenenu.github.io/)\n\n# [Github](https://github.com/YoungLeeNENU)\n\n# [\u9886\u82F1](http://www.linkedin.com/in/youngleein/)\n\n# [\u8C46\u74E3](https://www.douban.com/people/lee_young/)\n\n# [\u77E5\u4E4E](https://www.zhihu.com/people/youngleehua/activities)\n\n# \u6280\u672F\u5206\u4EAB\n## [Serious ClojureScript](https://www.slideshare.net/YoungLee98/serious-clojurescript)\n";
+
+
+/***/ }),
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -1,3 +1,4 @@
+export const links_en = `
 # [HomePage](https://youngleenenu.github.io/)
 
 # [Github](https://github.com/YoungLeeNENU)
@@ -10,3 +11,4 @@
 
 # Talks
 ## [Serious ClojureScript](https://www.slideshare.net/YoungLee98/serious-clojurescript)
+`;

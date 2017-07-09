@@ -1,3 +1,4 @@
+export const skills_en = `
 # Professional
 
 ## Javascript(es6+)
@@ -21,3 +22,4 @@
 ## C
 ## Clojure
 # skills
+`;

@@ -1,6 +1,6 @@
 {
   "name": "younglee",
-  "version": "1.0.11",
+  "version": "1.0.12-beta",
   "description": "younglee's cv, hosted on the npm",
   "main": "index.js",
   "bin": {
@@ -11,7 +11,7 @@
   "scripts": {
     "bin": "webpack && chmod +x bin/younglee bin/younglee-en bin/younglee-ch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postpublish": "yes | cp -nrf info/ ~/.younglee/"
+    "postinstall": "yes | cp -nrf info/ ~/.younglee/"
   },
   "repository": {
     "type": "git",

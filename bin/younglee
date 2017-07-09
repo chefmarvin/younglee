@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 70);
+/******/ 	return __webpack_require__(__webpack_require__.s = 84);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -87,14 +87,14 @@ module.exports = require("path");
 
 /***/ }),
 
-/***/ 70:
+/***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var commander = __webpack_require__(71);
-var pkgJson = __webpack_require__(72);
+var commander = __webpack_require__(85);
+var pkgJson = __webpack_require__(86);
 commander.version(pkgJson.version)
     .usage('<command> [options]')
     .command('en', 'Display cv in English')
@@ -104,7 +104,7 @@ commander.version(pkgJson.version)
 
 /***/ }),
 
-/***/ 71:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -1248,12 +1248,12 @@ function exists(file) {
 
 /***/ }),
 
-/***/ 72:
+/***/ 86:
 /***/ (function(module, exports) {
 
 module.exports = {
 	"name": "younglee",
-	"version": "1.0.10",
+	"version": "1.0.12-beta",
 	"description": "younglee's cv, hosted on the npm",
 	"main": "index.js",
 	"bin": {
@@ -1264,7 +1264,7 @@ module.exports = {
 	"scripts": {
 		"bin": "webpack && chmod +x bin/younglee bin/younglee-en bin/younglee-ch",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"postpublish": "yes | cp -nrf info/ ~/.younglee/"
+		"postinstall": "yes | cp -nrf info/ ~/.younglee/"
 	},
 	"repository": {
 		"type": "git",

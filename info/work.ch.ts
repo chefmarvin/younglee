@@ -1,3 +1,4 @@
+export const work_ch = `
 # [美团点评](http://meituan.com/)
 
 ## Web 前端工程师
@@ -28,3 +29,4 @@
 ## 嵌入式系统开发实习生
 ## 2013.04 — 2013.09
 ### 基于 lwip 协议负责开发了的 cortex-M9 开发板和 PC 的 TCP/UDP 网络通信应用
+`;

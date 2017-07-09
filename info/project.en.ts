@@ -1,3 +1,4 @@
+export const project_en = `
 # Restaurant Menu Order System (Data Analysis Platform/PC/Hybrid App) @Meituan-Dianping
 
 ## 2015.07 - Now
@@ -24,3 +25,4 @@
 ## 2014.05 - 2014.06
 ## In charge of the load balancing for multiple web service based on the controller of POX
 ### As a competitors of the first Chinese university SDN(Software Defined Network) application code jam and winned an award. Designed and coded the load balancer based on SDN for four web server, Technology stack is Python, mininet, POX.
+`;

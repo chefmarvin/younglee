@@ -1,3 +1,4 @@
+export const language_en = `
 # Chinese
 
 ## Native speaker
@@ -9,3 +10,4 @@
 ## CET-6: 462
 ## Oral: Good
 ## Written: Good
+`;
