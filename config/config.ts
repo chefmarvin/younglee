@@ -12,6 +12,7 @@ const configs: Configs = {
             ['Work Experience'],
             ['Projects'],
             ['Skills'],
+            ['Language'],
             ['Links']
         ],
         info: ['',
@@ -20,6 +21,7 @@ const configs: Configs = {
             'work.en.md',
             'project.en.md',
             'skills.en.md',
+            'language.en.md',
             'links.en.md'
         ]
     },
@@ -34,6 +36,8 @@ const configs: Configs = {
             ['工作经历'],
             ['项目'],
             ['技能'],
+            ['语言能力'],
+            ['链接']
         ],
         info: ['',
             'basic.ch.md',
@@ -41,6 +45,7 @@ const configs: Configs = {
             'work.ch.md',
             'project.ch.md',
             'skills.ch.md',
+            'language.ch.md',
             'links.ch.md'
         ]
     }

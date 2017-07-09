@@ -20835,7 +20835,7 @@ var Frame = (function () {
     Frame.prototype.screenWillMount = function () {
         this.mainBox = blessed.box(components_options_1.mainBoxOpt(this.screen, this.config));
         this.listtable = blessed.listtable(components_options_1.menuBarOpt(this.screen, this.config));
-        this.infoBox = blessed.box(components_options_1.infoBoxOpt(this.screen, this.config));
+        this.infoBox = blessed.scrollabletext(components_options_1.infoTextScrollableOpt(this.screen, this.config));
         var text = fs.readFileSync("./info/" + this.config.info[this.counter], 'utf-8');
         this.infoBox.setContent(text);
         this.bindings();
@@ -20843,7 +20843,7 @@ var Frame = (function () {
     };
     Frame.prototype.bindings = function () {
         var _this = this;
-        var switchMenu = function (ch, key) {
+        this.listtable.on('keypress', function (ch, key) {
             if (key.name === 'up' || key.name === 'k') {
                 if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
                     _this.counter--;
@@ -20862,8 +20862,7 @@ var Frame = (function () {
                 _this.render();
                 return;
             }
-        };
-        this.listtable.on('keypress', switchMenu);
+        });
         this.listtable.on('keypress', function (ch, key) {
             if (key.name === 'right' || key.name === 'l') {
                 _this.infoBox.focus();
@@ -20878,18 +20877,6 @@ var Frame = (function () {
         });
         this.screen.key('q', function () {
             return this.screen.destroy();
-        });
-    };
-    Frame.prototype.readInfo = function (filename) {
-        return new Promise(function (resolve, reject) {
-            fs.readFile(filename, function (err, result) {
-                if (err) {
-                    reject(err);
-                }
-                else {
-                    resolve(result);
-                }
-            });
         });
     };
     Frame.prototype.render = function () {
@@ -30595,11 +30582,11 @@ function mainBoxOpt(screen, config) {
         height: '100%',
         content: config.title,
         style: {
-            fg: '#008b00',
+            fg: '#48b317',
             bold: true,
             border: {
                 bold: true,
-                fg: '#008b00'
+                fg: '#48b317'
             }
         }
     };
@@ -30622,12 +30609,13 @@ function menuBarOpt(screen, config) {
         mouse: true,
         style: {
             border: {
-                fg: '#008b00'
+                fg: '#48b317'
             },
             cell: {
-                fg: '#008b00',
+                fg: '#48b317',
                 selected: {
-                    bg: '#008b00'
+                    fg: '#000000',
+                    bg: '#48b317'
                 }
             }
         }
@@ -30652,16 +30640,55 @@ function infoBoxOpt(screen, config) {
         },
         content: "",
         style: {
-            fg: '#008b00',
+            fg: '#48b317',
             bold: true,
             border: {
                 bold: true,
-                fg: '#008b00'
+                fg: '#48b317'
             }
         }
     };
 }
 exports.infoBoxOpt = infoBoxOpt;
+function infoTextScrollableOpt(screen, config) {
+    return {
+        parent: screen,
+        mouse: true,
+        padding: {
+            top: 1,
+            bottom: 1,
+            left: 2,
+            right: 2
+        },
+        top: 2,
+        left: 23,
+        right: 3,
+        bottom: 2,
+        width: 'shrink',
+        height: 'shrink',
+        content: '',
+        border: 'line',
+        align: 'center',
+        tags: true,
+        keys: true,
+        style: {
+            fg: '#48b317',
+            bold: true,
+            border: {
+                bold: true,
+                fg: '#48b317'
+            }
+        },
+        scrollbar: {
+            track: {
+                bg: '#48b317'
+            },
+            fg: '#ffc125',
+            inverse: true
+        }
+    };
+}
+exports.infoTextScrollableOpt = infoTextScrollableOpt;
 
 
 /***/ }),
@@ -30683,6 +30710,7 @@ var configs = {
             ['Work Experience'],
             ['Projects'],
             ['Skills'],
+            ['Language'],
             ['Links']
         ],
         info: ['',
@@ -30691,6 +30719,7 @@ var configs = {
             'work.en.md',
             'project.en.md',
             'skills.en.md',
+            'language.en.md',
             'links.en.md'
         ]
     },
@@ -30705,6 +30734,8 @@ var configs = {
             ['工作经历'],
             ['项目'],
             ['技能'],
+            ['语言能力'],
+            ['链接']
         ],
         info: ['',
             'basic.ch.md',
@@ -30712,6 +30743,7 @@ var configs = {
             'work.ch.md',
             'project.ch.md',
             'skills.ch.md',
+            'language.ch.md',
             'links.ch.md'
         ]
     }

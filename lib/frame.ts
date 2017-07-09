@@ -1,10 +1,8 @@
 import * as blessed from 'blessed';
 import * as fs from 'fs';
-// import 'es6-promise';
-// import * as request from 'request'; // fetch detail online
 
 import { Config } from '../config/config.type';
-import { mainBoxOpt, menuBarOpt, infoBoxOpt } from './components.options';
+import { mainBoxOpt, menuBarOpt, infoTextScrollableOpt } from './components.options';
 
 const auto = true;
 
@@ -34,7 +32,7 @@ export default class Frame {
     screenWillMount(): void {
         this.mainBox = blessed.box(mainBoxOpt(this.screen, this.config));
         this.listtable = blessed.listtable(menuBarOpt(this.screen, this.config));
-        this.infoBox = blessed.box(infoBoxOpt(this.screen, this.config));
+        this.infoBox = blessed.scrollabletext(infoTextScrollableOpt(this.screen, this.config));
 
         let text = fs.readFileSync(`./info/${this.config.info[this.counter]}`, 'utf-8');
         this.infoBox.setContent(text);
@@ -46,7 +44,8 @@ export default class Frame {
 
     bindings() {
         const _this = this;
-        const switchMenu = function(ch: any, key: any) {
+
+        this.listtable.on('keypress', function(ch: any, key: any) {
             if (key.name === 'up' || key.name === 'k') {
                 if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
                     _this.counter--;
@@ -64,9 +63,7 @@ export default class Frame {
                 _this.render();
                 return;
             }
-        };
-
-        this.listtable.on('keypress', switchMenu);
+        });
 
         this.listtable.on('keypress', function(ch: any, key: any) {
             if (key.name === 'right' || key.name === 'l') {
@@ -84,18 +81,6 @@ export default class Frame {
 
         this.screen.key('q', function() {
             return this.screen.destroy();
-        });
-    }
-
-    readInfo(filename: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            fs.readFile(filename, (err, result) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(result);
-                }
-            })
         });
     }
 

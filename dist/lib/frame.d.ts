@@ -10,6 +10,5 @@ export default class Frame {
     init(): void;
     screenWillMount(): void;
     bindings(): void;
-    readInfo(filename: string): Promise<any>;
     render(): void;
 }
