@@ -53,11 +53,11 @@ export function menuBarOpt(screen: any, config: Config): any {
     };
 }
 
-export function infoBoxOpt(screen: any, config: Config) {
+export function infoBoxOpt(screen: any, config: Config): any {
     return {
         parent: screen,
         top: 2,
-        left: 24,
+        left: 23,
         right: 3,
         bottom: 2,
         border: 'line',
@@ -69,7 +69,7 @@ export function infoBoxOpt(screen: any, config: Config) {
         padding: {
             left: 2
         },
-        content: `Waiting...`,
+        content: ``,
         style: {
             fg: '#008b00',
             bold: true,

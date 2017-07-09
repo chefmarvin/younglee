@@ -1,5 +1,7 @@
 import * as blessed from 'blessed';
-import * as request from 'request';
+import * as fs from 'fs';
+// import 'es6-promise';
+// import * as request from 'request'; // fetch detail online
 
 import { Config } from '../config/config.type';
 import { mainBoxOpt, menuBarOpt, infoBoxOpt } from './components.options';
@@ -30,54 +32,41 @@ export default class Frame {
     }
 
     screenWillMount(): void {
-        let _this = this;
-
         this.mainBox = blessed.box(mainBoxOpt(this.screen, this.config));
         this.listtable = blessed.listtable(menuBarOpt(this.screen, this.config));
-        let test: any = {
-            parent: this.screen,
-            top: 2,
-            left: 23,
-            right: 3,
-            bottom: 2,
-            border: 'line',
-            align: 'center',
-            tags: true,
-            keys: true,
-            width: 'shrink',
-            height: 'shrink',
-            padding: {
-                left: 2
-            },
-            content: ``,
-            style: {
-                fg: '#008b00',
-                bold: true,
-                border: {
-                    bold: true,
-                    fg: '#008b00'
-                }
-            }
-        };
-        this.infoBox = blessed.box(test);
+        this.infoBox = blessed.box(infoBoxOpt(this.screen, this.config));
 
-        this.listtable.on('keypress', function(ch: any, key: any) {
+        let text = fs.readFileSync(`./info/${this.config.info[this.counter]}`, 'utf-8');
+        this.infoBox.setContent(text);
+
+        this.bindings();
+
+        this.listtable.focus();
+    }
+
+    bindings() {
+        const _this = this;
+        const switchMenu = function(ch: any, key: any) {
             if (key.name === 'up' || key.name === 'k') {
                 if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
                     _this.counter--;
                 }
-                _this.infoBox.setContent(_this.config.info[_this.counter]);
+                let text = fs.readFileSync(`./info/${_this.config.info[_this.counter]}`, 'utf-8');
+                _this.infoBox.setContent(text);
                 _this.render();
                 return;
             } else if (key.name === 'down' || key.name === 'j') {
                 if (_this.counter >= 1 && _this.counter < _this.config.info.length - 1) {
                     _this.counter++;
                 }
-                _this.infoBox.setContent(_this.config.info[_this.counter]);
+                let text = fs.readFileSync(`./info/${_this.config.info[_this.counter]}`, 'utf-8');
+                _this.infoBox.setContent(text);
                 _this.render();
                 return;
             }
-        });
+        };
+
+        this.listtable.on('keypress', switchMenu);
 
         this.listtable.on('keypress', function(ch: any, key: any) {
             if (key.name === 'right' || key.name === 'l') {
@@ -96,12 +85,21 @@ export default class Frame {
         this.screen.key('q', function() {
             return this.screen.destroy();
         });
+    }
 
-        this.listtable.focus();
+    readInfo(filename: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            fs.readFile(filename, (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            })
+        });
     }
 
     render(): void {
-        this.infoBox.setContent(this.config.info[this.counter]);
         this.screen.render();
     }
 }

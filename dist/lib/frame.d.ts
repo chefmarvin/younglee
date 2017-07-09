@@ -9,5 +9,7 @@ export default class Frame {
     constructor(config: Config);
     init(): void;
     screenWillMount(): void;
+    bindings(): void;
+    readInfo(filename: string): Promise<any>;
     render(): void;
 }

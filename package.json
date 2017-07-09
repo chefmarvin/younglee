@@ -33,6 +33,7 @@
     "@types/request": "^0.0.45",
     "blessed": "^0.1.81",
     "commander": "^2.10.0",
+    "markdown-it": "^8.3.1",
     "pty.js": "^0.3.1",
     "request": "^2.81.0",
     "term.js": "^0.0.7"

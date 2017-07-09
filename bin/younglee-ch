@@ -20673,7 +20673,7 @@ module.exports = function extend() {
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "d3fddfc3b782147437bf39480e656de1.node";
+module.exports = __webpack_require__.p + "15a84011213386368bd24e6d3bfb3d96.node";
 
 /***/ }),
 /* 50 */
@@ -20815,6 +20815,7 @@ module.exports = Video;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var blessed = __webpack_require__(28);
+var fs = __webpack_require__(2);
 var components_options_1 = __webpack_require__(68);
 var auto = true;
 var Frame = (function () {
@@ -20832,41 +20833,23 @@ var Frame = (function () {
         this.screenWillMount();
     };
     Frame.prototype.screenWillMount = function () {
-        var _this = this;
         this.mainBox = blessed.box(components_options_1.mainBoxOpt(this.screen, this.config));
         this.listtable = blessed.listtable(components_options_1.menuBarOpt(this.screen, this.config));
-        var test = {
-            parent: this.screen,
-            top: 2,
-            left: 23,
-            right: 3,
-            bottom: 2,
-            border: 'line',
-            align: 'center',
-            tags: true,
-            keys: true,
-            width: 'shrink',
-            height: 'shrink',
-            padding: {
-                left: 2
-            },
-            content: "",
-            style: {
-                fg: '#008b00',
-                bold: true,
-                border: {
-                    bold: true,
-                    fg: '#008b00'
-                }
-            }
-        };
-        this.infoBox = blessed.box(test);
-        this.listtable.on('keypress', function (ch, key) {
+        this.infoBox = blessed.box(components_options_1.infoBoxOpt(this.screen, this.config));
+        var text = fs.readFileSync("./info/" + this.config.info[this.counter], 'utf-8');
+        this.infoBox.setContent(text);
+        this.bindings();
+        this.listtable.focus();
+    };
+    Frame.prototype.bindings = function () {
+        var _this = this;
+        var switchMenu = function (ch, key) {
             if (key.name === 'up' || key.name === 'k') {
                 if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
                     _this.counter--;
                 }
-                _this.infoBox.setContent(_this.config.info[_this.counter]);
+                var text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
+                _this.infoBox.setContent(text);
                 _this.render();
                 return;
             }
@@ -20874,11 +20857,13 @@ var Frame = (function () {
                 if (_this.counter >= 1 && _this.counter < _this.config.info.length - 1) {
                     _this.counter++;
                 }
-                _this.infoBox.setContent(_this.config.info[_this.counter]);
+                var text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
+                _this.infoBox.setContent(text);
                 _this.render();
                 return;
             }
-        });
+        };
+        this.listtable.on('keypress', switchMenu);
         this.listtable.on('keypress', function (ch, key) {
             if (key.name === 'right' || key.name === 'l') {
                 _this.infoBox.focus();
@@ -20894,10 +20879,20 @@ var Frame = (function () {
         this.screen.key('q', function () {
             return this.screen.destroy();
         });
-        this.listtable.focus();
+    };
+    Frame.prototype.readInfo = function (filename) {
+        return new Promise(function (resolve, reject) {
+            fs.readFile(filename, function (err, result) {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    resolve(result);
+                }
+            });
+        });
     };
     Frame.prototype.render = function () {
-        this.infoBox.setContent(this.config.info[this.counter]);
         this.screen.render();
     };
     return Frame;
@@ -30643,7 +30638,7 @@ function infoBoxOpt(screen, config) {
     return {
         parent: screen,
         top: 2,
-        left: 24,
+        left: 23,
         right: 3,
         bottom: 2,
         border: 'line',
@@ -30655,7 +30650,7 @@ function infoBoxOpt(screen, config) {
         padding: {
             left: 2
         },
-        content: "Waiting...",
+        content: "",
         style: {
             fg: '#008b00',
             bold: true,
@@ -30688,8 +30683,7 @@ var configs = {
             ['Work Experience'],
             ['Projects'],
             ['Skills'],
-            ['Links'],
-            ['Mail']
+            ['Links']
         ],
         info: ['',
             'basic.en.md',
@@ -30697,8 +30691,7 @@ var configs = {
             'work.en.md',
             'project.en.md',
             'skills.en.md',
-            'links.en.md',
-            'mail.en.md'
+            'links.en.md'
         ]
     },
     ch: {
@@ -30709,11 +30702,9 @@ var configs = {
             [''],
             ['基本信息'],
             ['教育情况'],
-            ['链接'],
-            ['邮件'],
+            ['工作经历'],
             ['项目'],
             ['技能'],
-            ['工作经历']
         ],
         info: ['',
             'basic.ch.md',
@@ -30721,8 +30712,7 @@ var configs = {
             'work.ch.md',
             'project.ch.md',
             'skills.ch.md',
-            'links.ch.md',
-            'mail.ch.md'
+            'links.ch.md'
         ]
     }
 };
