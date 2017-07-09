@@ -30,11 +30,17 @@ export default class Frame {
     }
 
     screenWillMount(): void {
+        let text;
         this.mainBox = blessed.box(mainBoxOpt(this.screen, this.config));
         this.listtable = blessed.listtable(menuBarOpt(this.screen, this.config));
         this.infoBox = blessed.scrollabletext(infoTextScrollableOpt(this.screen, this.config));
 
-        let text = fs.readFileSync(`./info/${this.config.info[this.counter]}`, 'utf-8');
+        try {
+            text = fs.readFileSync(`./info/${this.config.info[this.counter]}`, 'utf-8');
+        } catch (error) {
+            text = fs.readFileSync(`~/.younglee/${this.config.info[this.counter]}`, 'utf-8');
+        }
+
         this.infoBox.setContent(text);
 
         this.bindings();
@@ -46,11 +52,16 @@ export default class Frame {
         const _this = this;
 
         this.listtable.on('keypress', function(ch: any, key: any) {
+            let text;
             if (key.name === 'up' || key.name === 'k') {
                 if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
                     _this.counter--;
                 }
-                let text = fs.readFileSync(`./info/${_this.config.info[_this.counter]}`, 'utf-8');
+                try {
+                    text = fs.readFileSync(`./info/${_this.config.info[_this.counter]}`, 'utf-8');
+                } catch (error) {
+                    text = fs.readFileSync(`~/.younglee/${_this.config.info[_this.counter]}`, 'utf-8');
+                }
                 _this.infoBox.setContent(text);
                 _this.render();
                 return;
@@ -58,7 +69,11 @@ export default class Frame {
                 if (_this.counter >= 1 && _this.counter < _this.config.info.length - 1) {
                     _this.counter++;
                 }
-                let text = fs.readFileSync(`./info/${_this.config.info[_this.counter]}`, 'utf-8');
+                try {
+                    text = fs.readFileSync(`./info/${_this.config.info[_this.counter]}`, 'utf-8');
+                } catch (error) {
+                    text = fs.readFileSync(`~/.younglee/${_this.config.info[_this.counter]}`, 'utf-8');
+                }
                 _this.infoBox.setContent(text);
                 _this.render();
                 return;

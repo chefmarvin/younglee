@@ -20833,10 +20833,16 @@ var Frame = (function () {
         this.screenWillMount();
     };
     Frame.prototype.screenWillMount = function () {
+        var text;
         this.mainBox = blessed.box(components_options_1.mainBoxOpt(this.screen, this.config));
         this.listtable = blessed.listtable(components_options_1.menuBarOpt(this.screen, this.config));
         this.infoBox = blessed.scrollabletext(components_options_1.infoTextScrollableOpt(this.screen, this.config));
-        var text = fs.readFileSync("./info/" + this.config.info[this.counter], 'utf-8');
+        try {
+            text = fs.readFileSync("./info/" + this.config.info[this.counter], 'utf-8');
+        }
+        catch (error) {
+            text = fs.readFileSync("~/.younglee/" + this.config.info[this.counter], 'utf-8');
+        }
         this.infoBox.setContent(text);
         this.bindings();
         this.listtable.focus();
@@ -20844,11 +20850,17 @@ var Frame = (function () {
     Frame.prototype.bindings = function () {
         var _this = this;
         this.listtable.on('keypress', function (ch, key) {
+            var text;
             if (key.name === 'up' || key.name === 'k') {
                 if (_this.counter > 1 && _this.counter <= _this.config.info.length - 1) {
                     _this.counter--;
                 }
-                var text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
+                try {
+                    text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
+                }
+                catch (error) {
+                    text = fs.readFileSync("~/.younglee/" + _this.config.info[_this.counter], 'utf-8');
+                }
                 _this.infoBox.setContent(text);
                 _this.render();
                 return;
@@ -20857,7 +20869,12 @@ var Frame = (function () {
                 if (_this.counter >= 1 && _this.counter < _this.config.info.length - 1) {
                     _this.counter++;
                 }
-                var text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
+                try {
+                    text = fs.readFileSync("./info/" + _this.config.info[_this.counter], 'utf-8');
+                }
+                catch (error) {
+                    text = fs.readFileSync("~/.younglee/" + _this.config.info[_this.counter], 'utf-8');
+                }
                 _this.infoBox.setContent(text);
                 _this.render();
                 return;

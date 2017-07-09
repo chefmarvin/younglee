@@ -10,7 +10,8 @@
   },
   "scripts": {
     "bin": "webpack && chmod +x bin/younglee bin/younglee-en bin/younglee-ch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postpublish": "yes | cp -nrf info/ ~/.younglee/"
   },
   "repository": {
     "type": "git",
