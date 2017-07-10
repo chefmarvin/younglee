@@ -1,1 +1,5 @@
 *.js linguist-language=Typescript
+*.node linguist-language=Typescript
+younglee linguist-language=Typescript
+younglee-en linguist-language=Typescript
+younglee-ch linguist-language=Typescript
