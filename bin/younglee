@@ -1253,7 +1253,7 @@ function exists(file) {
 
 module.exports = {
 	"name": "younglee",
-	"version": "1.0.12-beta",
+	"version": "1.0.14",
 	"description": "younglee's cv, hosted on the npm",
 	"main": "index.js",
 	"bin": {
@@ -1262,9 +1262,8 @@ module.exports = {
 		"younglee-ch": "bin/younglee-ch"
 	},
 	"scripts": {
-		"bin": "webpack && chmod +x bin/younglee bin/younglee-en bin/younglee-ch",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"postinstall": "yes | cp -nrf info/ ~/.younglee/"
+		"bin": "webpack --display-optimization-bailout && chmod +x bin/younglee bin/younglee-en bin/younglee-ch",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
 		"type": "git",
