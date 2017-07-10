@@ -21,5 +21,4 @@ export const skills_en = `
 
 ## C
 ## Clojure
-# skills
 `;
