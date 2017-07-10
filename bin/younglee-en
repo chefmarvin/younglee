@@ -30811,7 +30811,7 @@ exports.project_en = "\n# Restaurant Menu Order System (Data Analysis Platform/P
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.skills_en = "\n# Professional\n\n## Javascript(es6+)\n## CSS3\n## HTML5\n\n# Intermediate\n\n## Software Engineering\n## Computer Science\n## Python\n## Typescript\n## ClojureScript\n## Version Control(git, svn)\n## Linux\n## Emacs\n\n\n# Amateur\n\n## C\n## Clojure\n# skills\n";
+exports.skills_en = "\n# Professional\n\n## Javascript(es6+)\n## CSS3\n## HTML5\n\n# Intermediate\n\n## Software Engineering\n## Computer Science\n## Python\n## Typescript\n## ClojureScript\n## Version Control(git, svn)\n## Linux\n## Emacs\n\n\n# Amateur\n\n## C\n## Clojure\n";
 
 
 /***/ }),
