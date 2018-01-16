@@ -5,7 +5,7 @@ export const work_en = `
 ## 2015.10 - now
 ### Take part in developing the web applications for Meituan Dianping restaurant menu order business, including hybrid web applications, PC web applications.
 ### Designed and developed the client side code for the "Tianyan" food safety supervisor and as the person in responsible.
-### Currently as the person in responsible for the data platform of the Meituan-Dianping menu order business.
+### Currently as a member of infrastructure team and as a person in responsible for the data platform of the Meituan-Dianping menu order business.
 
 
 # [Dianping](http://www.dianping.com/)

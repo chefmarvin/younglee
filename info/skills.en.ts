@@ -11,6 +11,7 @@ export const skills_en = `
 ## Computer Science
 ## Python
 ## Typescript
+## Elasticsearch/Logstash/Kibana
 ## ClojureScript
 ## Version Control(git, svn)
 ## Linux
@@ -21,4 +22,5 @@ export const skills_en = `
 
 ## C
 ## Clojure
+## Jenkins
 `;
