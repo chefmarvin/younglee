@@ -1,26 +1,25 @@
 export const skills_en = `
 # Professional
 
-## Javascript(es6+)
+## Javascript(es6+)/Typescript based development in React, Vue, Angular
 ## CSS3
 ## HTML5
 
-# Intermediate
 
+# Intermediate
 ## Software Engineering
 ## Computer Science
+## Docker
 ## Python
-## Typescript
 ## Elasticsearch/Logstash/Kibana
-## ClojureScript
 ## Version Control(git, svn)
 ## Linux
+## Jenkins
 ## Emacs
 
 
 # Amateur
-
-## C
+## Kafka
+## Java
 ## Clojure
-## Jenkins
 `;
