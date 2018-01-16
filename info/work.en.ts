@@ -1,5 +1,5 @@
 export const work_en = `
-# [美团点评](http://meituan.com/)
+# [Meituan-Dianping](http://meituan.com/)
 
 ## Web Frontend Developer
 ## 2015.10 - now
